@@ -1,0 +1,73 @@
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #F9F0F3;
+    font-family: Helvetica, sans-serif;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #051014;
+    font-weight: bold;
+  }
+  input[type="file"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: none; 
+    border-radius: 0; 
+    border-bottom: 1px solid #051014; 
+    background-color: transparent; 
+    font-family: 'Newsreader', serif;
+    font-size: 48px;
+  }
+  input[type="file"]:focus, input[type="text"]:focus {
+    outline: none; 
+  }
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #832232;
+    color: #F9F0F3;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #051014;
+  }
+
+  /* Styling Posts */
+
+  #recent-posts {
+    list-style: none;
+    padding: 0;
+}
+
+#recent-posts li {
+    margin-bottom: 20px;
+}
+
+textarea#message {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #051014; 
+  background-color: transparent;
+  font-family: 'Newsreader', serif; 
+  font-weight: bold; 
+  font-size: 28px;
+  color: black; 
+}
+
+/* Style when textarea is focused */
+textarea#message:focus {
+  outline: none; 
+  border-bottom-color: black; 
+  caret-color: #832232; 
+}

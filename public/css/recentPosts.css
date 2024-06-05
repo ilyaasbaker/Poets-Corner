@@ -1,0 +1,68 @@
+#recent-posts {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: left; 
+  padding: 0;
+  margin: 0 auto; 
+  max-width: 800px;
+}
+
+/* Styles for the post container */
+.post-container {
+  border: 1px solid #ccc;
+  padding: 20px; 
+  margin-bottom: 20px; 
+  /* max-width: 500px; */
+  width: 100%; 
+  background-color: #fff; 
+  border-radius: 8px; 
+}
+
+/* Styles for the text container */
+.text-container {
+  text-align: left;
+}
+
+/* Styles for the text content */
+.text-container p {
+  font-family: "Newsreader", serif;
+  font-weight: bold;
+  line-height: 27px;
+  font-size: 25px;
+  margin: 10px 0; 
+}
+
+/* Styles for the posted by information */
+.posted-by {
+  font-style: italic;
+  margin-bottom: 10px; 
+  color: #666; 
+}
+
+/* Styles for the like button */
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.like-button:hover .star {
+  color: green;
+}
+
+.like-button .star {
+  color: black; 
+}
+
+.like-button.liked .star {
+  color: red;
+}
+
+.like-button span {
+  margin-left: 5px; 
+}

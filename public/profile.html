@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/head.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- HEADER -->
+    <nav>
+        <div class="logo">
+            <a href="application.html"><h1 class="headerTitle">Poets Corner</h1></a>
+        </div>
+        <ul>
+            <li><a href="application.html">Home</a></li>
+            <li><a href="post.html">Write a Poem</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+    <div class="menubar">
+        <ul>
+            <li><a href="application.html">Home</a></li>
+            <li><a href="post.html">Write a Poem</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN -->
+    <section id="main">
+        <div class="inner profile-container">
+            <div class="profile-picture">
+                <img id="profile-pic" src="default-profile.png" alt="Profile Picture">
+                <label for="profile-pic-upload" class="edit-button">&#9998;</label>
+                <input type="file" id="profile-pic-upload" accept="image/*">
+            </div>
+            <div class="user-info">
+                <h2 id="username">Username</h2>
+                <button id="edit-button" class="edit-button">&#9998;</button>
+            </div>
+            <div id="bio-section">
+                <p id="bio">This is your bio</p>
+                <button id="edit-bio-button" class="edit-button">&#9998;</button>
+            </div>
+            <div id="edit-form" style="display: none;">
+                <input type="text" id="new-username" placeholder="New Username">
+                <button id="save-button">Save</button>
+            </div>
+            <div id="edit-bio-form" style="display: none;">
+                <textarea id="new-bio" placeholder="Write your bio here..."></textarea>
+                <button id="save-bio-button">Save</button>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+
+</div>
+
+<script src="js/profile.js"></script>
+
+</body>
+</html>

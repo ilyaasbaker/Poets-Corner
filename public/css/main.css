@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+body {
+
+    background-color: #F9F0F3;
+	font-family: Helvetica, sans-serif;
+
+}
+
+.thumbnail {
+
+    width: 10%;
+}
+
+/* Wrapper */
+
+#wrapper > * > .inner {
+    width: 100%;
+    max-width: 70em; /* OG Value 68em */
+    margin: 0 auto;
+    padding: 0 2.5em;
+	display: flex;
+}
+
+    @media screen and (max-width: 736px) {
+
+        #wrapper > * > .inner {
+            padding: 0 1.25em;
+        }
+
+    }
+
+    /* Section/Article */
+
+	section.special, article.special {
+		text-align: center;
+	}
+
+	header p {
+		margin-top: -1em;
+	}
+
+	@media screen and (max-width: 736px) {
+
+		header p {
+			margin-top: 0;
+		}
+
+	}
+
+     /* Main */
+
+	#main {
+		padding: 0em 0 6em 0 ;
+	}
+
+		@media screen and (max-width: 736px) {
+
+			#main {
+				padding: 0em 0 4em 0 ;
+			}
+
+		}
+
+		/* Login and Register Page */
+
+		.authpage {
+			text-align: center;
+			margin: 0 auto;
+			width: 50%; /* Adjust the width as needed */
+			margin-top: 20vh; /* Adjust the top margin as needed */
+		}
+
+		/* Profile */
+
+		.circular {
+			border-radius: 50%;
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+		}
+		
+		.profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .profile-picture {
+            display: flex;
+            align-items: left;
+        }
+
+        .profile-picture img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: black;
+        }
+
+        .profile-picture input {
+            display: none;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: left;
+            margin-top: 10px;
+        }
+
+        .user-info h2 {
+
+            margin-right: 10px;
+			align-items: left;
+        }
+
+        .edit-button {
+
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+			padding: 10px;
+			align-items: center;
+
+        }
+
+        .edit-button:hover {
+
+            color: #007BFF;
+
+        }
+
+        #edit-form {
+
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        #edit-form input {
+
+            margin-bottom: 10px;
+
+        }
