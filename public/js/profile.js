@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bio = document.getElementById('bio');
     const newBioInput = document.getElementById('new-bio');
 
-    // Edit username functionality
+    // edit username functionality
     editButton.addEventListener('click', () => {
         editForm.style.display = 'block';
     });
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Upload profile picture functionality
+    // upload profile picture functionality
     profilePicUpload.addEventListener('change', async () => {
         const file = profilePicUpload.files[0];
         const formData = new FormData();
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Edit bio functionality
+    // edit bio 
     editBioButton.addEventListener('click', () => {
         editBioForm.style.display = 'block';
     });
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Fetch user data on page load
+    // fetch user data on page load
     async function fetchUserData() {
         const response = await fetch('/get-user-data');
         if (response.ok) {
@@ -88,11 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchUserData();
 
-    // Fetch and display user posts on page load
     fetchUserPosts();
 });
 
-// Fetch and display user posts
+// fetch and display user posts
 async function fetchUserPosts() {
     const response = await fetch('/get-user-posts');
     if (response.ok) {
@@ -103,8 +102,7 @@ async function fetchUserPosts() {
     }
 }
 
-// Display user posts on the profile page
-// Display user posts on the profile page
+// display user posts on the profile page
 function displayUserPosts(posts) {
     const postsList = document.getElementById('recent-posts');
     postsList.innerHTML = '';
@@ -146,7 +144,7 @@ function displayUserPosts(posts) {
 }
 
 
-// Handle like functionality for a post
+// like functionality for posts
 async function handleLike(postId, button) {
     const response = await fetch('/like', {
         method: 'POST',
@@ -156,7 +154,7 @@ async function handleLike(postId, button) {
         body: JSON.stringify({ postId })
     });
     if (response.ok) {
-        // Refresh the user posts after liking
+        
         fetchUserPosts();
     } else {
         console.error('Failed to like the post');

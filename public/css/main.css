@@ -16,7 +16,7 @@ body {
 
 #wrapper > * > .inner {
     width: 100%;
-    max-width: 70em; /* OG Value 68em */
+    max-width: 70em; 
     margin: 0 auto;
     padding: 0 2.5em;
 	display: flex;
@@ -67,9 +67,9 @@ body {
 		.authpage {
 			text-align: center;
 			margin: 0 auto;
-			width: 50%; /* Adjust the width as needed */
-			margin-top: 20vh; /* Adjust the top margin as needed */
-		}
+			width: 50%; 
+			margin-top: 20vh; 
+        }
 
 		/* Profile */
 

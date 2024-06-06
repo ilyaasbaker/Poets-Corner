@@ -117,7 +117,7 @@ app.post('/register', async (request, response) => {
     console.log(await users.getUsers())
 })
 
-// Endpoint for updating username
+// update username
 app.post('/update-username', checkLoggedIn, async (req, res) => {
     const { username } = req.body;
     const userId = req.session.userid;
@@ -130,7 +130,7 @@ app.post('/update-username', checkLoggedIn, async (req, res) => {
     }
 });
 
-// Endpoint for uploading profile picture
+// upload profile picture
 app.post('/upload-profile-pic', checkLoggedIn, upload.single('profilePic'), async (req, res) => {
     const userId = req.session.userid;
     const profilePicUrl = `/uploads/${req.file.filename}`;
@@ -143,7 +143,7 @@ app.post('/upload-profile-pic', checkLoggedIn, upload.single('profilePic'), asyn
     }
 });
 
-// Endpoint for updating bio
+// update bio
 app.post('/update-bio', checkLoggedIn, async (req, res) => {
     const { bio } = req.body;
     const userId = req.session.userid;
@@ -157,7 +157,7 @@ app.post('/update-bio', checkLoggedIn, async (req, res) => {
 });
 
 
-// Endpoint for getting user data
+// get user data
 app.get('/get-user-data', checkLoggedIn, async (req, res) => {
     const userId = req.session.userid;
 
@@ -169,7 +169,7 @@ app.get('/get-user-data', checkLoggedIn, async (req, res) => {
     }
 });
 
-// Endpoint for liking a post
+// like posts
 app.post('/like', checkLoggedIn, async (request, response) => {
     const { postId } = request.body;
     const userId = request.session.userid;

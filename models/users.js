@@ -8,7 +8,7 @@ const userSchema = new Schema({
     password: String,
     loggedin: Boolean,
     profilePicUrl: String,
-    bio: String // Add bio field
+    bio: String 
 });
 
 async function updateUsername(currentUsername, newUsername) {

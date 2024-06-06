@@ -65,7 +65,7 @@ textarea#message {
   color: black; 
 }
 
-/* Style when textarea is focused */
+
 textarea#message:focus {
   outline: none; 
   border-bottom-color: black; 
