@@ -156,6 +156,7 @@ app.post('/update-bio', checkLoggedIn, async (req, res) => {
     }
 });
 
+
 // Endpoint for getting user data
 app.get('/get-user-data', checkLoggedIn, async (req, res) => {
     const userId = req.session.userid;
@@ -174,4 +175,16 @@ app.post('/like', checkLoggedIn, async (request, response) => {
     const userId = request.session.userid;
     const success = await postData.toggleLike(postId, userId);
     response.json({ success });
+});
+
+// getting user's posts
+app.get('/get-user-posts', checkLoggedIn, async (req, res) => {
+    const userId = req.session.userid;
+
+    try {
+        const posts = await postData.getUserPosts(userId);
+        res.json({ posts });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
 });

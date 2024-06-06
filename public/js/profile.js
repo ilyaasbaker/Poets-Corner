@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bio = document.getElementById('bio');
     const newBioInput = document.getElementById('new-bio');
 
+    // Edit username functionality
     editButton.addEventListener('click', () => {
         editForm.style.display = 'block';
     });
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Upload profile picture functionality
     profilePicUpload.addEventListener('change', async () => {
         const file = profilePicUpload.files[0];
         const formData = new FormData();
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Edit bio functionality
     editBioButton.addEventListener('click', () => {
         editBioForm.style.display = 'block';
     });
@@ -84,4 +87,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fetchUserData();
+
+    // Fetch and display user posts on page load
+    fetchUserPosts();
 });
+
+// Fetch and display user posts
+async function fetchUserPosts() {
+    const response = await fetch('/get-user-posts');
+    if (response.ok) {
+        const data = await response.json();
+        displayUserPosts(data.posts);
+    } else {
+        console.error('Failed to fetch user posts');
+    }
+}
+
+// Display user posts on the profile page
+// Display user posts on the profile page
+function displayUserPosts(posts) {
+    const postsList = document.getElementById('recent-posts');
+    postsList.innerHTML = '';
+
+    if (posts.length === 0) {
+        const noPostsMsg = document.createElement('li');
+        noPostsMsg.textContent = 'No recent posts available.';
+        postsList.appendChild(noPostsMsg);
+        return;
+    }
+
+    posts.forEach(post => {
+        const postItem = document.createElement('li');
+        const postContainer = document.createElement('div');
+        postContainer.classList.add('post-container');
+        
+        const postedByDiv = document.createElement('div');
+        postedByDiv.classList.add('posted-by');
+        postedByDiv.textContent = `Posted by ${post.postedBy}`;
+        postContainer.appendChild(postedByDiv);
+        
+        const textContainer = document.createElement('div');
+        textContainer.classList.add('text-container');
+        const postText = document.createElement('p'); // Change to p element
+        postText.textContent = post.message;
+        textContainer.appendChild(postText);
+        postContainer.appendChild(textContainer);
+        
+        const likeButton = document.createElement('button');
+        likeButton.classList.add('like-button');
+        likeButton.innerHTML = `<span class="star">&#9733;</span> <span>${post.likes}</span>`;
+        likeButton.addEventListener('click', () => handleLike(post._id, likeButton));
+        postContainer.appendChild(likeButton);
+        
+        postItem.appendChild(postContainer);
+        postsList.appendChild(postItem);
+    });
+}
+
+
+// Handle like functionality for a post
+async function handleLike(postId, button) {
+    const response = await fetch('/like', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ postId })
+    });
+    if (response.ok) {
+        // Refresh the user posts after liking
+        fetchUserPosts();
+    } else {
+        console.error('Failed to like the post');
+    }
+}

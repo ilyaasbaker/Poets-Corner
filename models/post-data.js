@@ -6,7 +6,7 @@ const postSchema = new Schema({
     imagePath: String,
     message: String,
     likes: { type: Number, default: 0 },
-    likedBy: { type: [String], default: [] },  // Track users who liked the post
+    likedBy: { type: [String], default: [] },  
     time: Date
 });
 
@@ -39,16 +39,30 @@ async function getPosts(n = 3) {
     return data;
 }
 
+async function getUserPosts(username) {
+    let data = [];
+    await Post.find({ postedBy: username })
+        .sort({ 'time': -1 })
+        .exec()
+        .then(mongoData => {
+            data = mongoData;
+        })
+        .catch(err => {
+            console.log("Error: " + err);
+        });
+    return data;
+}
+
 async function toggleLike(postId, userId) {
     let post = await Post.findById(postId);
     if (post) {
         const index = post.likedBy.indexOf(userId);
         if (index === -1) {
-            // User has not liked the post, add like
+            // add like
             post.likedBy.push(userId);
             post.likes += 1;
         } else {
-            // User has liked the post, remove like
+            // remove like
             post.likedBy.splice(index, 1);
             post.likes -= 1;
         }
@@ -61,5 +75,6 @@ async function toggleLike(postId, userId) {
 module.exports = {
     addNewPost,
     getPosts,
+    getUserPosts, 
     toggleLike
 }
