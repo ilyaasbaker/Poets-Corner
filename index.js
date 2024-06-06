@@ -22,7 +22,7 @@ const postData = require('./models/post-data.js')
 
 // Constants to hold expiry times in ms
 const threeMins = 1000 * 60 * 3;
-const oneHour = 1000 * 60 * 60;
+const oneHour = 5000 * 60 * 60;
 
 // Setup cookie parser middleware
 app.use(cookieParser());
