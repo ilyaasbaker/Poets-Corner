@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="css/postForm.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/head.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+</head>
+
+<body>
+
+    <div id="wrapper">
+    <!-- HEADER -->
+<nav>
+    <div class="logo">
+        <a  href="application.html"><h1 class="headerTitle">Poets Corner</h1></a>
+    </div>
+    <ul>
+        <li>
+          <a href="application.html">Home</a>
+        </li>
+        <li>
+          <a href="profile.html">Profile</a>
+        </li>
+      </ul>
+    <div class="hamburger">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </div>
+  </nav>
+  <div class="menubar">
+    <ul>
+        <li>
+          <a href="application.html">Home</a>
+        </li>
+        <li>
+          <a href="profile.html">Profile</a>
+        </li>
+      </ul>
+  </div>
+<!-- ////// -->
+
+<!-- MAIN -->
+<section id="main">
+    <div class="inner">
+    <!-- enctype="multipart/form-data" -->
+    <form action="/newpost" method="POST">
+      <label>Write a Poem:</label><br>
+      <!-- <input type="file" name="userImage" accept="image/*"><br> -->
+      <textarea id="message" name="message" rows="4"></textarea><br>
+      <input type="submit" value="Share Poem">
+  </form>
+  
+
+
+</div> <!-- inner -->
+</section> <!-- main -->
+<!-- ////// -->
+
+<!-- FOOTER -->
+<!-- ////// -->
+</div> <!-- "wrapper" -->
+
+<!-- SCRIPTS -->
+
+  <script>
+
+document.getElementById('message').addEventListener('keydown', function(event) {
+    // Check if the Enter key is pressed
+    if (event.key === 'Enter') {
+        // Prevent the default action of the Enter key (which is submitting the form)
+        event.preventDefault();
+        // Append a newline character to the input value
+        this.value += '\n';
+    }
+});
+
+
+  </script>
+
+<!-- ////// -->
+
+</body>
+</html>

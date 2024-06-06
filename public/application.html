@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/head.css"/>
+    <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/recentPosts.css"/>
+</head>
+<body>
+    <div id="wrapper">
+        <nav>
+            <div class="logo">
+                <a href="application.html"><h1 class="headerTitle">Poets Corner</h1></a>
+            </div>
+            <ul>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="post.html">Write a Poem</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </nav>
+        <div class="menubar">
+            <ul>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="post.html">Write a Poem</a></li>
+            </ul>
+        </div>
+        <section id="main">
+            <div class="inner">
+                <div>
+                    <div class="square">
+                        <ul id="recent-posts">
+                            <li>No recent posts available.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="js/header.js"></script>
+<script>
+    let recentPosts = [];
+    let recentPostsList = document.querySelector('#recent-posts');
+
+    fetch('/getposts')
+        .then(response => response.json())
+        .then(fetchedData => {
+            recentPosts = fetchedData.posts;
+            handleServerData();
+        });
+
+    function handleServerData() {
+        recentPostsList.innerHTML = '';
+        if (recentPosts.length === 0) {
+            let li = document.createElement('li');
+            li.textContent = "No recent posts available.";
+            recentPostsList.appendChild(li);
+            return;
+        }
+        recentPosts.forEach(function(post) {
+            let li = document.createElement('li');
+            let postContainer = document.createElement('div');
+            postContainer.classList.add('post-container');
+            let postedByDiv = document.createElement('div');
+            postedByDiv.classList.add('posted-by');
+            postedByDiv.textContent = `Posted by ${post.postedBy}`;
+            postContainer.appendChild(postedByDiv);
+            let textContainer = document.createElement('div');
+            textContainer.classList.add('text-container');
+            let postText = document.createElement('p');
+            postText.textContent = `${post.message}`;
+            textContainer.appendChild(postText);
+            textContainer.style.whiteSpace = 'pre-wrap';
+            postContainer.appendChild(textContainer);
+            let likeButton = document.createElement('button');
+            likeButton.classList.add('like-button');
+            if (post.liked) {
+                likeButton.classList.add('liked');
+            }
+            likeButton.innerHTML = `<span class="star">&#9733;</span> <span>${post.likes}</span>`;
+            likeButton.addEventListener('click', () => handleLikeButtonClick(post._id, likeButton));
+            postContainer.appendChild(likeButton);
+            li.appendChild(postContainer);
+            recentPostsList.appendChild(li);
+        });
+    }
+
+    function handleLikeButtonClick(postId, button) {
+        fetch(`/like`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ postId: postId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                button.classList.toggle('liked');
+                fetch('/getposts')
+                    .then(response => response.json())
+                    .then(fetchedData => {
+                        recentPosts = fetchedData.posts;
+                        handleServerData();
+                    });
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
