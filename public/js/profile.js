@@ -128,8 +128,9 @@ function displayUserPosts(posts) {
         
         const textContainer = document.createElement('div');
         textContainer.classList.add('text-container');
-        const postText = document.createElement('p'); // Change to p element
-        postText.textContent = post.message;
+        const postText = document.createElement('p'); 
+        postText.textContent = `${post.message}`;
+        textContainer.style.whiteSpace = 'pre-wrap';
         textContainer.appendChild(postText);
         postContainer.appendChild(textContainer);
         
